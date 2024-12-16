@@ -30,6 +30,7 @@ fun ListMahasiswa(
     modifier: Modifier = Modifier,
     onClick: (String) -> Unit = { }
 ) {
+    //agar kolomnya bisa di scroll
     LazyColumn(
         modifier = modifier
     ) {
