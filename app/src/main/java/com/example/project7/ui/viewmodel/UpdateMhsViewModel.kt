@@ -74,8 +74,13 @@ class UpdateMhsViewModel(
             )
         }
     }
+    // Fungsi untuk mereset snackBarMessage
+    fun resetSnackBarMessage() {
+        updateUIState = updateUIState.copy(snackBarMessage = null)
+    }
 
 }
 fun Mahasiswa.toUIStateMhs() : MhsUIState = MhsUIState (
     mahasiswaEvent = this.toDetailUiEvent(),
 )
+
