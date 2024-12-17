@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -30,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.project7.data.entity.Mahasiswa
 import com.example.project7.ui.viewmodel.HomeUiState
+import kotlinx.coroutines.launch
 
 @Composable
 fun BodyHomeMhsView(
@@ -47,6 +49,16 @@ fun BodyHomeMhsView(
                 contentAlignment = Alignment.Center
             ) {
                 CircularProgressIndicator()
+            }
+        }
+        homeUiState.isError -> {
+            //menampilkan pesan error
+            LaunchedEffect(homeUiState.errorMessage) {
+                homeUiState.errorMessage?.let { message ->
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar(message) //tampilkan Snackbar
+                    }
+                }
             }
         }
 
