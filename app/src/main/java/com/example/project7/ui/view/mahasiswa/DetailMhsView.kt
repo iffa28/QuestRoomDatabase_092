@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -51,8 +50,8 @@ fun DetailMhsView(
         topBar = {
             TopAppBar(
                 judul = "Detail Mahasiswa",
-                showBackButton = false,
-                onBack = { },
+                showBackButton = true,
+                onBack = onBack,
                 modifier = modifier
             )
         },
@@ -160,22 +159,22 @@ fun ItemDetailMhs(
     ) {
         Column(modifier = Modifier.padding(16.dp)
         ) {
-            ComponenDetailMhs(judul = "NIM", isinya = mahasiswa.nim)
+            ComponentDetailMhs(judul = "NIM", isinya = mahasiswa.nim)
             Spacer(modifier = Modifier.padding(4.dp))
 
-            ComponenDetailMhs(judul = "Nama", isinya = mahasiswa.nama)
+            ComponentDetailMhs(judul = "Nama", isinya = mahasiswa.nama)
             Spacer(modifier = Modifier.padding(4.dp))
 
-            ComponenDetailMhs(judul = "Alamat", isinya = mahasiswa.alamat)
+            ComponentDetailMhs(judul = "Alamat", isinya = mahasiswa.alamat)
             Spacer(modifier = Modifier.padding(4.dp))
 
-            ComponenDetailMhs(judul = "Jenis Kelamin", isinya = mahasiswa.jenisKelamin)
+            ComponentDetailMhs(judul = "Jenis Kelamin", isinya = mahasiswa.jenisKelamin)
             Spacer(modifier = Modifier.padding(4.dp))
 
-            ComponenDetailMhs(judul = "Kelas", isinya = mahasiswa.kelas)
+            ComponentDetailMhs(judul = "Kelas", isinya = mahasiswa.kelas)
             Spacer(modifier = Modifier.padding(4.dp))
 
-            ComponenDetailMhs(judul = "Angkatan", isinya = mahasiswa.angkatan)
+            ComponentDetailMhs(judul = "Angkatan", isinya = mahasiswa.angkatan)
             Spacer(modifier = Modifier.padding(4.dp))
         }
 
@@ -183,7 +182,7 @@ fun ItemDetailMhs(
 }
 
 @Composable
-fun ComponenDetailMhs(
+fun ComponentDetailMhs(
     modifier: Modifier = Modifier,
     judul: String,
     isinya: String,
@@ -209,10 +208,9 @@ fun ComponenDetailMhs(
 
 @Composable
 private fun DeleteConfirmationDialog(
-    onDeleteConfirm: () -> Unit, onDeleteCancel: () -> Unit, modifier: Modifier =
-        Modifier
+    onDeleteConfirm: () -> Unit, onDeleteCancel: () -> Unit, modifier: Modifier = Modifier
 ) {
-    AlertDialog(onDismissRequest = {  },
+    AlertDialog(onDismissRequest = { /* Do Nothing */  },
         title = { Text("Delete Data")},
         text = { Text("Apakah anda yakin ingin menghapus data?") },
         modifier = modifier,

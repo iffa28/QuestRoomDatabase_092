@@ -76,8 +76,8 @@ fun Mahasiswa.toDetailUiEvent () : MahasiswaEvent {
     return MahasiswaEvent(
         nim = nim,
         nama = nama,
-        jenisKelamin = jenisKelamin,
         alamat = alamat,
+        jenisKelamin = jenisKelamin,
         kelas = kelas,
         angkatan = angkatan
     )

@@ -44,7 +44,7 @@ import com.example.project7.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeMhsViewModel(
+fun HomeMhsView(
     viewModel: HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onAddMhs: () -> Unit = { },
     onDetailClick: (String) -> Unit = { },
