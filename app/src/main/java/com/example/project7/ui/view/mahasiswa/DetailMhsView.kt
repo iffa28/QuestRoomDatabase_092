@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.project7.data.entity.Mahasiswa
 import com.example.project7.ui.viewmodel.DetailUiState
+import com.example.project7.ui.viewmodel.toMahasiswaEntity
 
 @Composable
 fun BodyDetailMhs(
@@ -40,6 +42,39 @@ fun BodyDetailMhs(
                 contentAlignment = Alignment.Center
             ) {
                 CircularProgressIndicator() //tampilkan loading
+            }
+        }
+        detailUiState.isUiEventNotEmpty -> {
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                ItemDetailMhs(
+                    mahasiswa = detailUiState.detailUiEvent.toMahasiswaEntity(),
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                Button(onClick = {
+                    deleteConfirmationRequired = true
+                },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "Delete"
+                    )
+                }
+
+                if (deleteConfirmationRequired) {
+                    DeleteConfirmationDialog(
+                        onDeleteConfirm = {
+                            deleteConfirmationRequired = false
+                            onDeleteClick()
+                        },
+                        onDeleteCancel = { deleteConfirmationRequired = false},
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
             }
         }
     }
